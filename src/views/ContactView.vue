@@ -1,8 +1,10 @@
 <template>
-<div class="container">
+
+<div class="container mx-auto px-8">
     <h1 class="text-white text text-center text-4xl font-bold">
      Neem contact op voor vragen!
     </h1>
+    <img src="\src\assets\Vector.png" alt="dog feet" class="insert-y-0 left-0">
     <form ref="form" @submit.prevent="sendEmail">
         <div class="flex-container space-y-12">
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -31,7 +33,11 @@
   </div>
         </div>
     </form>
+    <img src="\src\assets\Vector.png" alt="dog feet" class="absolute bottom-1 right-0">
+
 </div>
+
+<img src="\src\assets\image_8_1.png" alt="insert-x-0 bottom-0">
 </template>
 
 
