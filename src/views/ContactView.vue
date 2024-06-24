@@ -53,7 +53,7 @@
 
   </div>
 
-  <img src="\src\assets\image_8_1.png" alt="insert-x-0 bottom-0">
+<img src="\src\assets\image_8_1.png" alt="happy animals sitting in a row" class="insert-x-0 bottom-0">
 </template>
 
 
