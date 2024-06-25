@@ -2,13 +2,20 @@
 
   <div class="container mx-auto px-8">
     <header class="text-white">
-      <nav class="flex flex-row items-center justify-between">
+      <nav class="flex flex-col sm:flex-row items-center justify-between">
         <div>
-          <h2 class="font-bold text-3xl">AnimalSelect</h2>
+          <router-link to="/">
+            <h2 class="font-bold text-2xl sm:text-3xl">AnimalSelect</h2>
+          </router-link>
         </div>
-        <ul class="flex flex-row gap-x-4 font-bold">
-          <li class="hover:text-[#bebebe]">Aanbiedingen</li>
-          <li class="hover:text-[#bebebe]">Over ons</li>
+        <ul class="flex flex-col sm:flex-row gap-2 sm:gap-x-4 font-bold mt-2 sm:mt-0">
+
+          <li>
+            <router-link to="/over-ons" class="hover:text-[#bebebe]">Over ons</router-link>
+          </li>
+          <li>
+            <router-link to="/contact" class="hover:text-[#bebebe]">Contact</router-link>
+          </li>
         </ul>
       </nav>
     </header>
@@ -53,7 +60,7 @@
 
   </div>
 
-<img src="\src\assets\image_8_1.png" alt="happy animals sitting in a row" class="insert-x-0 bottom-0">
+  <img src="\src\assets\image_8_1.png" alt="happy animals sitting in a row" class="insert-x-0 bottom-0">
 </template>
 
 

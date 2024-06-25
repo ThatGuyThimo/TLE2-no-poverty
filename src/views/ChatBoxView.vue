@@ -1,51 +1,59 @@
 <template>
-    <div class="fixed bottom-4 right-4 max-w-lg w-full p-4">
-      <div class="bg-[#D9D9D9] shadow-lg shadow-black rounded-lg">
-        <div class="text-center border-b-2 border-black py-4 font-bold text-3xl">
-          <h3>Animal Chat</h3>
-        </div>
-        <div class="chat-box h-96 overflow-y-auto mb-4" id="chat-box"></div>
-        <div class="flex">
-          <input
-            type="text"
-            id="user-input"
-            class="flex-1 rounded-l-lg px-4 py-2 focus:outline-none"
-            placeholder="Welk dier past bij mij?"
-          />
-          <button
-            id="send-btn"
-            class="bg-[#AF62AA] py-4 hover:bg-purple-600 text-white font-bold px-4 rounded-r-lg"
+  <div class="fixed bottom-4 right-4 max-w-lg w-full p-4 z-50">
+    <div v-if="isChatOpen" class="bg-[#D9D9D9] shadow-lg shadow-black rounded-lg">
+      <div class="text-center border-b-2 flex flex-row justify-between px-10 border-black py-4 font-bold text-3xl">
+        <h3>Animal Chat</h3>
+        <button @click="toggleChat">x</button>
+      </div>
+      <div class="chat-box h-96 overflow-y-auto mb-4" id="chat-box"></div>
+      <div class="flex">
+        <input
+          type="text"
+          id="user-input"
+          class="flex-1 rounded-l-lg px-4 py-2 focus:outline-none"
+          placeholder="Welk dier past bij mij?"
+        />
+        <button
+          id="send-btn"
+          class="bg-[#AF62AA] py-4 hover:bg-purple-600 text-white font-bold px-4 rounded-r-lg"
+        >
+          <span id="send-text">Verstuur</span>
+          <svg
+            id="loading-spinner"
+            class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
           >
-            <span id="send-text">Verstuur</span>
-            <svg
-              id="loading-spinner"
-              class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                class="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                stroke-width="4"
-              ></circle>
-              <path
-                class="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.004 8.004 0 014 12H0c0 6.627 5.373 12 12 12v-4c-3.313 0-6.291-1.339-8.485-3.515z"
-              ></path>
-            </svg>
-          </button>
-        </div>
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.004 8.004 0 014 12H0c0 6.627 5.373 12 12 12v-4c-3.313 0-6.291-1.339-8.485-3.515z"
+            ></path>
+          </svg>
+        </button>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-import { onMounted } from 'vue';
+    <button v-else @click="toggleChat" class="bg-[#AF62AA] py-2 px-4 absolute right-4 bottom-4 text-white font-bold rounded-lg shadow-lg shadow-black">Chat</button>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const isChatOpen = ref(true);
+
+const toggleChat = () => {
+  isChatOpen.value = !isChatOpen.value;
+};
 
 onMounted(() => {
   const chatBox = document.getElementById("chat-box");
@@ -114,12 +122,10 @@ onMounted(() => {
 });
 </script>
 
-  
-  <style scoped>
-  .chat-box {
-    height: 24rem; /* 96 */
-    overflow-y: auto;
-    margin-bottom: 1rem; /* 4 */
-  }
-  </style>
-  
+<style scoped>
+.chat-box {
+  height: 24rem; /* 96 */
+  overflow-y: auto;
+  margin-bottom: 1rem; /* 4 */
+}
+</style>
