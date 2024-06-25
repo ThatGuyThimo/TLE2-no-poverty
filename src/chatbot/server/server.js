@@ -42,6 +42,24 @@ app.use((req, res, next) => {
   next();
 });
 
+// Reset endpoint to reset the chatbot state
+app.post("/reset", (req, res) => {
+  chatHistory = [
+    [
+      "system",
+      "Jij bent AnimalSelect, een behulpzame chatbot die is ontworpen om gebruikers te helpen bij het vinden van de perfecte dierenvriend. Je bent specifiek gericht op het helpen van mensen met een beperkt budget om een huisdier te vinden dat betaalbaar is en weinig onderhoud vergt. Je kunt vragen stellen om hun voorkeuren, levensstijl en behoeften te begrijpen en zo de beste dierensuggesties te doen. Jouw doel is om de gebruiker een dier voor te stellen dat goed bij hen past, rekening houdend met factoren zoals ruimte, tijd, allergieën, gezinsgrootte, persoonlijke voorkeuren en financiële beperkingen.",
+    ],
+  ];
+  questionIndex = 0;
+  budget = null;
+  hasSpace = null;
+  timeAvailable = null;
+  petType = null;
+  initialQuestionsComplete = false;
+
+  res.json({ message: "Chatbot state has been reset." });
+});
+
 app.post("/chat", async (req, res) => {
   try {
     const chat = req.body.chat;

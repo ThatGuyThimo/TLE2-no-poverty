@@ -55,12 +55,14 @@ const toggleChat = () => {
   isChatOpen.value = !isChatOpen.value;
 };
 
-onMounted(() => {
+onMounted(async () => {
   const chatBox = document.getElementById("chat-box");
   const userInput = document.getElementById("user-input");
   const sendBtn = document.getElementById("send-btn");
   const sendText = document.getElementById("send-text");
   const spinner = document.getElementById("loading-spinner");
+
+  await resetChatbot();
 
   appendMessage("Welkom bij de AnimalSelect chat! Ontdek welk huisdier bij jou past! stuur een berichtje op de vragenlijst te beginnen! ", false);
 
@@ -95,6 +97,18 @@ onMounted(() => {
       enableInput();
     }
   });
+
+  async function resetChatbot() {
+    try {
+      const response = await fetch('http://localhost:8000/reset', {
+        method: 'POST',
+      });
+      const result = await response.json();
+      console.log(result.message);
+    } catch (error) {
+      console.error('Error resetting chatbot:', error);
+    }
+  }
 
   function disableInput() {
     userInput.disabled = true;
