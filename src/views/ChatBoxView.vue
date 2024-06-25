@@ -62,7 +62,7 @@ onMounted(() => {
   const sendText = document.getElementById("send-text");
   const spinner = document.getElementById("loading-spinner");
 
-  appendMessage("Welkom bij de AnimalSelect chat! Typ het nummer voor een categorie om door te gaan met dat onderwerp.", false);
+  appendMessage("Welkom bij de AnimalSelect chat! Ontdek welk huisdier bij jou past! stuur een berichtje op de vragenlijst te beginnen! ", false);
 
   sendBtn.addEventListener("click", async function () {
     const userMessage = userInput.value.trim();

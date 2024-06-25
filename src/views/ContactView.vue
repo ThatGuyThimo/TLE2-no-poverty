@@ -1,3 +1,7 @@
+<script setup>
+import ChatBox from "../views/ChatBoxView.vue";
+</script>
+
 <template>
 
   <div class="container mx-auto px-8">
@@ -60,7 +64,10 @@
 
   </div>
 
-  <img src="\src\assets\image_8_1.png" alt="happy animals sitting in a row" class="insert-x-0 bottom-0">
+  <img src="\src\assets\image_8_1.png" alt="happy animals sitting in a row" class="insert-x-0 mx-auto bottom-0">
+
+  <ChatBox />
+
 </template>
 
 

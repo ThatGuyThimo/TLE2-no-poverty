@@ -28,9 +28,7 @@ import ChatBox from "../views/ChatBoxView.vue";
         <h2 class="font-bold text-4xl mt-40">
           Ontdek welk dier bij jou past met de AnimalSelect tool
         </h2>
-        <button class="bg-[#AF62AA] p-2 rounded-lg flex justify-end ml-auto bottom-0 mt-16 text-2xl font-bold">
-          Welk dier past bij mij?
-        </button>
+
       </div>
       <div class="w-10/12  relative z-10">
         <img src="../assets/headerImage.png" class="rounded-lg  relative z-10" alt="" />

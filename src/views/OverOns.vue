@@ -1,3 +1,7 @@
+<script setup>
+import ChatBox from "../views/ChatBoxView.vue";
+</script>
+
 <template>
   <div class="container mx-auto px-4 sm:px-8">
     <header class="text-white">
@@ -50,5 +54,6 @@
     <img src="\src\assets\Vector.png" alt="dog feet" class="absolute z-0 bottom-1 right-0 hidden sm:block">
   </div>
 
-  <img src="\src\assets\image_8_1.png" class="w-full mt-4">
+  <img src="\src\assets\image_8_1.png" class="mx-auto  mt-4">
+  <ChatBox />
 </template>
