@@ -107,7 +107,7 @@ app.post("/chat", async (req, res) => {
         }
         - Maandelijks budget: ${budget} euro
         - Gewenst huisdier: ${petType}
-        Kun je een lijst maken van de top  huisdierrassen die het beste passen bij deze levensstijl en budget.
+        Kun je top 3  lijst maken van de huisdierrassen die het beste passen bij deze levensstijl, dier en budget.
         `;
 
         messages.push(["human", breedPrompt]);
