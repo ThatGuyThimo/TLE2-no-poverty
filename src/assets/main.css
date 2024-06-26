@@ -1,2 +1,6 @@
 @import './base.css';
 
+body{
+    background: rgb(69,66,66);
+    background: linear-gradient(144deg, rgba(69,66,66,1) 0%, rgba(40,48,71,1) 90%);
+}
