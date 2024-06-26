@@ -1,9 +1,15 @@
 import dotenv from "dotenv";
 import express from "express";
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
+import { queryPinecone , getEmbeddingsFromText} from "./utils.js";
+import { Pinecone } from '@pinecone-database/pinecone';
 
 dotenv.config();
 const app = express();
+
+const embeddings = new OpenAIEmbeddings({ apiKey: process.env.OPENAI_API_KEY, model: process.env.OPENAI_MODEL_NAME, dimensions: 1536});
+const pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY });
+
 
 let chatHistory = [
   [
@@ -143,6 +149,31 @@ app.post("/chat", async (req, res) => {
         return res.json({ response: response.content });
       }
     } else {
+
+      // Get the embeddings for the user's input
+      const userEmbedding = await getEmbeddingsFromText(embeddings, chat);
+
+      // Query the Pinecone index to find the most similar pet breed
+      const queryResponse = await queryPinecone(
+        pc, // Pinecone client
+        process.env.PINECONE_INDEX_NAME, // Index name
+        "animaldata", // Namespace name
+        userEmbedding, // User's input embedding
+        3 // Top K results
+      );
+
+      const contextArray = []
+      queryResponse.matches.forEach((match) => {
+        contextArray.push(['human', `Deze text is context die van een database afkomt als het er niet relevant uitziet negeer het dan, typedier:${match.metadata.soort}, ras:${match.metadata.ras}, onderwerp:${match.metadata.onderwerp}, contexttext:${match.metadata.context} `]);
+      });
+
+      console.log("Pinecone Query Response:", queryResponse);
+
+      messages = [...chatHistory, ...contextArray, ["human", chat]];
+      // console.log(contextArray)
+
+
+
       // Handle subsequent questions from the user with max_tokens set to 20
       const response = await model.invoke(messages, { max_tokens: 20 });
 
