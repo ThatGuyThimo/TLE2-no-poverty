@@ -75,7 +75,7 @@ onMounted(async () => {
     userInput.value = "";
 
     try {
-      const response = await fetch(`http://localhost:8000/chat`, {
+      const response = await fetch(`https://cyberwebsec.com/45.136.141.140:8100/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +100,7 @@ onMounted(async () => {
 
   async function resetChatbot() {
     try {
-      const response = await fetch('http://localhost:8000/reset', {
+      const response = await fetch('https://cyberwebsec.com/45.136.141.140:8100/reset', {
         method: 'POST',
       });
       const result = await response.json();
